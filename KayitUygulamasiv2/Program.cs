@@ -18,7 +18,8 @@ namespace KayitUygulamasiv2
        public List<DersNotlari> alinandersler = new List<DersNotlari>();
        public List<String> ilgialanlari = new List<string>();
        public double AGNO;
-       public int talepsayisi;
+        public int talepsayisi;
+        
         public Ogrenci() { }
 
         public Ogrenci(string isim, string soyisim, int ıD, string sifre, double aGNO, int talepsayisi)
@@ -35,6 +36,15 @@ namespace KayitUygulamasiv2
         {
             return $"ID: {ID}, İsim: {isim}, Soyisim: {soyisim}, Şifre: {sifre}, AGNO: {AGNO}, Talep Sayısı: {talepsayisi}";
         }
+       
+        public void setTalepsayisi(int talepsayisi_yeni)
+        {
+            this.talepsayisi=talepsayisi_yeni;
+            Program.baglanti.Open();
+            NpgsqlCommand talepsayisi_update = new NpgsqlCommand("UPDATE public.ogrenci SET talepsayisi = " + talepsayisi + " WHERE ogrenci_id = " + ID + ";", Program.baglanti);
+            talepsayisi_update.ExecuteNonQuery();
+        }
+
     }
 
     public class Ogretmen
@@ -62,6 +72,14 @@ namespace KayitUygulamasiv2
         public override string ToString()
         {
             return $"ID: {ID}, İsim: {isim}, Soyisim: {soyisim}, Şifre: {sifre}, Sicil No: {sicilno}, Kontenjan: {kontenjan}";
+        }
+
+        public void setKontenjan(int kontenjan_yeni)
+        {
+            this.kontenjan = kontenjan_yeni;
+            Program.baglanti.Open();
+            NpgsqlCommand talepsayisi_update = new NpgsqlCommand("UPDATE public.ogretmen SET kontenjan = "+kontenjan+" WHERE ogretmen_id = "+ID+"; ", Program.baglanti);
+            talepsayisi_update.ExecuteNonQuery();
         }
     }
 
@@ -133,19 +151,28 @@ namespace KayitUygulamasiv2
 
     public class Yonetici
     {
-        public Ogrenci ogrenci;
-        public Ogretmen ogretmen;
-        public Ders ders;
-        public String durum;
-        public int TalepID;
+        public int ID;
+        public String isim;
+        public String soyisim;
+        public String Parola;
         public Yonetici() { }
-        
+
+        public override string ToString()
+        {
+            return $"ID: {ID}, İsim: {isim}, Soyisim: {soyisim}, Parola: {Parola}";
+        }
+
     }
     
 
     internal static class Program
     {
         public static NpgsqlConnection baglanti = new NpgsqlConnection("server=localHost;port=5432; Database=postgres; user ID=postgres; password=furkan254");
+        public static List<Ogrenci> ogrenciler = new List<Ogrenci>();
+        public static List<Ogretmen> ogretmenler = new List<Ogretmen>();
+        public static List<Ders> dersler = new List<Ders>();
+        public static List<Talep> talepler = new List<Talep>();
+        public static Yonetici yonetici = new Yonetici();
         /// <summary>
         /// Uygulamanın ana girdi noktası.
         /// </summary>
@@ -157,7 +184,7 @@ namespace KayitUygulamasiv2
             NpgsqlDataAdapter da = new NpgsqlDataAdapter("select * from ogrenci", baglanti);
             DataSet ds_ogrenci = new DataSet();
             da.Fill(ds_ogrenci);
-            List <Ogrenci> ogrenciler = new List<Ogrenci>();
+           
             foreach (DataRow row in ds_ogrenci.Tables[0].Rows)
                 {
                 //Console.WriteLine($"ID: {row["ogrenciID"]}, Name: {row["ogrenci_isim"]}");
@@ -180,7 +207,7 @@ namespace KayitUygulamasiv2
             da = new NpgsqlDataAdapter("select * from ogretmen", baglanti);
             DataSet ds_ogretmen = new DataSet();
             da.Fill(ds_ogretmen);
-            List<Ogretmen> ogretmenler = new List<Ogretmen>();
+            
             foreach (DataRow row in ds_ogretmen.Tables[0].Rows)
             {
                 Ogretmen ogretmen = new Ogretmen();
@@ -199,7 +226,7 @@ namespace KayitUygulamasiv2
             da = new NpgsqlDataAdapter("select dersler.ders_id , dersler.ogretmen_id , derslerinisimleri.ders_isim from dersler , derslerinisimleri where dersler.ders_id=derslerinisimleri.ders_id", baglanti);
             DataSet ds_ders = new DataSet();
             da.Fill(ds_ders);
-            List<Ders> dersler = new List<Ders>();
+            
             foreach (DataRow row in ds_ders.Tables[0].Rows)
             {
                 Ders ders = new Ders();
@@ -218,9 +245,25 @@ namespace KayitUygulamasiv2
                 dersler.Add(ders);
             }
 
-            // NOTLU DERSLERİN BAĞLANTISI
+            // YONETİCİ BAĞLANTISI ----------------------------------------------------------------
 
-            da= new NpgsqlDataAdapter("select *from alinandersler", baglanti);
+            da = new NpgsqlDataAdapter("select * from yonetici", baglanti);
+            DataSet ds_yonetici = new DataSet();
+            da.Fill(ds_yonetici);
+
+            foreach (DataRow row in ds_yonetici.Tables[0].Rows)
+            {
+                yonetici.ID = (int)row["yonetici_id"];
+                yonetici.isim = (String)row["yonetici_isim"];
+                yonetici.soyisim = (String)row["yonetici_soyisim"];
+                yonetici.Parola = (String)row["yonetici_parola"];
+            }
+
+            Console.WriteLine(yonetici.ToString());
+
+            // NOTLU DERSLERİN BAĞLANTISI ----------------------------------------------------------
+
+            da = new NpgsqlDataAdapter("select *from alinandersler", baglanti);
             DataSet ds_alinandersler = new DataSet();
             da.Fill(ds_alinandersler);
             foreach(DataRow row in ds_alinandersler.Tables[0].Rows)
@@ -313,7 +356,7 @@ namespace KayitUygulamasiv2
             da = new NpgsqlDataAdapter("select * from talep",baglanti);
             DataSet ds_talep = new DataSet();
             da.Fill(ds_talep);
-            List<Talep> talepler = new List<Talep>();
+            
             foreach(DataRow row in ds_talep.Tables[0].Rows)
             {
                 Talep talep = new Talep();
@@ -392,9 +435,12 @@ namespace KayitUygulamasiv2
                 Console.WriteLine(talepler[i].ToString()+"\n");
             }
 
+           // ogrenciler[0].setTalepsayisi(15);
+           // Console.WriteLine("setTalepsayisi returns talepsayisi="+ ogrenciler[0].talepsayisi);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new GirisEkrani());
         }
     }
 }
