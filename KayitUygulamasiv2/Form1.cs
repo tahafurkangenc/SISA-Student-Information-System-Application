@@ -60,6 +60,23 @@ namespace KayitUygulamasiv2
                         }
                     }
                 }
+                if (totalsonucStringArray[i].StartsWith("(2021—2022 Spring Term)"))
+                {
+                    int j = 1;
+                    while (!(totalsonucStringArray[i + j].StartsWith("DNO")))
+                    {
+                        AlinanderskodlaririchTextBox.Text += totalsonucStringArray[i + j].Substring(0, 6).Trim();
+                        j = j + 2;
+                        if ((totalsonucStringArray[i + j].StartsWith("DNO")))
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            AlinanderskodlaririchTextBox.Text += "\n";
+                        }
+                    }
+                }
             }
             
         }

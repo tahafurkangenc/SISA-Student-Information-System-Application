@@ -32,6 +32,11 @@
             this.yoneticiSoyisimLabel = new System.Windows.Forms.Label();
             this.yoneticiİsimLabel = new System.Windows.Forms.Label();
             this.ogrencikayitbutton = new System.Windows.Forms.Button();
+            this.ilgialaniekleTextBox = new System.Windows.Forms.TextBox();
+            this.ilgialanieklebutton = new System.Windows.Forms.Button();
+            this.ilgialanisil = new System.Windows.Forms.Button();
+            this.ilgiAlanlariListBox = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // yoneticiIDLabel
@@ -71,11 +76,60 @@
             this.ogrencikayitbutton.UseVisualStyleBackColor = true;
             this.ogrencikayitbutton.Click += new System.EventHandler(this.ogrencikayitbutton_Click);
             // 
+            // ilgialaniekleTextBox
+            // 
+            this.ilgialaniekleTextBox.Location = new System.Drawing.Point(197, 288);
+            this.ilgialaniekleTextBox.Name = "ilgialaniekleTextBox";
+            this.ilgialaniekleTextBox.Size = new System.Drawing.Size(154, 20);
+            this.ilgialaniekleTextBox.TabIndex = 22;
+            // 
+            // ilgialanieklebutton
+            // 
+            this.ilgialanieklebutton.Location = new System.Drawing.Point(197, 314);
+            this.ilgialanieklebutton.Name = "ilgialanieklebutton";
+            this.ilgialanieklebutton.Size = new System.Drawing.Size(154, 26);
+            this.ilgialanieklebutton.TabIndex = 21;
+            this.ilgialanieklebutton.Text = "İlgi Alanı Ekle";
+            this.ilgialanieklebutton.UseVisualStyleBackColor = true;
+            this.ilgialanieklebutton.Click += new System.EventHandler(this.ilgialanieklebutton_Click);
+            // 
+            // ilgialanisil
+            // 
+            this.ilgialanisil.Location = new System.Drawing.Point(197, 346);
+            this.ilgialanisil.Name = "ilgialanisil";
+            this.ilgialanisil.Size = new System.Drawing.Size(154, 26);
+            this.ilgialanisil.TabIndex = 20;
+            this.ilgialanisil.Text = "İlgi Alanı Sil";
+            this.ilgialanisil.UseVisualStyleBackColor = true;
+            // 
+            // ilgiAlanlariListBox
+            // 
+            this.ilgiAlanlariListBox.FormattingEnabled = true;
+            this.ilgiAlanlariListBox.Location = new System.Drawing.Point(20, 161);
+            this.ilgiAlanlariListBox.Name = "ilgiAlanlariListBox";
+            this.ilgiAlanlariListBox.Size = new System.Drawing.Size(168, 212);
+            this.ilgiAlanlariListBox.TabIndex = 19;
+            this.ilgiAlanlariListBox.SelectedIndexChanged += new System.EventHandler(this.ilgiAlanlariListBox_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(21, 145);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "İlgi Alanları:";
+            // 
             // yoneticiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ilgialaniekleTextBox);
+            this.Controls.Add(this.ilgialanieklebutton);
+            this.Controls.Add(this.ilgialanisil);
+            this.Controls.Add(this.ilgiAlanlariListBox);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.ogrencikayitbutton);
             this.Controls.Add(this.yoneticiİsimLabel);
             this.Controls.Add(this.yoneticiSoyisimLabel);
@@ -94,5 +148,10 @@
         private System.Windows.Forms.Label yoneticiSoyisimLabel;
         private System.Windows.Forms.Label yoneticiİsimLabel;
         private System.Windows.Forms.Button ogrencikayitbutton;
+        private System.Windows.Forms.TextBox ilgialaniekleTextBox;
+        private System.Windows.Forms.Button ilgialanieklebutton;
+        private System.Windows.Forms.Button ilgialanisil;
+        private System.Windows.Forms.ListBox ilgiAlanlariListBox;
+        private System.Windows.Forms.Label label1;
     }
 }

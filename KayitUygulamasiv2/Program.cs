@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -163,6 +164,18 @@ namespace KayitUygulamasiv2
         }
 
     }
+
+    public class İlgiAlani
+    {
+        public int ID;
+        public String ilgialaniadi;
+        public İlgiAlani() { }
+        public İlgiAlani(int ID, String ilgialaniadi)
+        {
+            this.ID = ID ;
+            this.ilgialaniadi= ilgialaniadi ;
+        }
+    }
     
 
     internal static class Program
@@ -173,6 +186,7 @@ namespace KayitUygulamasiv2
         public static List<Ders> dersler = new List<Ders>();
         public static List<Talep> talepler = new List<Talep>();
         public static Yonetici yonetici = new Yonetici();
+        public static List<İlgiAlani> ilgialanlari = new List<İlgiAlani> ();
         /// <summary>
         /// Uygulamanın ana girdi noktası.
         /// </summary>
@@ -333,6 +347,14 @@ namespace KayitUygulamasiv2
                         break;
                     }
                 }
+            }
+
+            da = new NpgsqlDataAdapter("Select * from ilgialani_isimler", baglanti);
+            DataSet ds_ilgialani_ids = new DataSet();
+            da.Fill(ds_ilgialani_ids);
+            foreach (DataRow row in ds_ilgialani_ids.Tables[0].Rows)
+            {
+                ilgialanlari.Add(new İlgiAlani((int)row["ilgialani_id"], (String)row["ilgialani_isimler"]));   
             }
 
             // ÖĞRETMENLERİN İLGİ ALANLARININ BAĞLANMASI
