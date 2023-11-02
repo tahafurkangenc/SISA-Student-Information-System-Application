@@ -38,14 +38,14 @@ namespace KayitUygulamasiv2
             kontenjanLabel.Text = "Kontenjan = " + ogretmen.kontenjan;
         }
 
-        public double kritikDegerHesaplama(Ogretmen gelenogretmen,Ogrenci gelenogrenci)
+        public double kritikDegerHesaplama(Ogretmen gelenogretmen,Ogrenci gelenogrenci) 
         {
             double kritikdeger=0;
             for(int i= 0;i<gelenogretmen.kritikdersler.Count;i++)
             {
                 for(int j = 0; j < gelenogrenci.alinandersler.Count; j++)
                 {
-                    if (gelenogrenci.alinandersler[j].dersID.Equals(gelenogretmen.kritikdersler[j].dersID)) // dersler eşleşti
+                    if (gelenogrenci.alinandersler[j].dersID.Equals(gelenogretmen.kritikdersler[j].dersID)) // dersler eşleşti  //2 hoca birlikte hata veriyor
                     {
                         kritikdeger = kritikdeger + gelenogrenci.alinandersler[j].sayisalnot;
                         break;
@@ -379,6 +379,7 @@ namespace KayitUygulamasiv2
                             Program.talepler[i].ogrenci.alinandersler.Add(dersNotlari);
                             Program.talepler[i].durum = "onay";
                             ogretmen.kontenjan = ogretmen.kontenjan - 1; // SETTER İLE DEĞİŞTİR
+                            kontenjanLabel.Text = "Kontenjan = " + ogretmen.kontenjan;
                         }
                     }
                     else
@@ -400,8 +401,50 @@ namespace KayitUygulamasiv2
             // Örnek olarak satırdaki hücrelerden birini al
             //string Secili_DersID = selectedRow.Cells["Ders ID"].Value.ToString();
             int Secili_OgrenciID = int.Parse(selectedRow.Cells["ID"].Value.ToString());
+            Console.WriteLine("Secili_OgrenciID="+Secili_OgrenciID);
             // daha önce dersi alıp almadığını kontrol et sonra ekle
-            
+            for(int i=0;i<Program.ogrenciler.Count;i++)
+            {
+                if (Program.ogrenciler[i].ID == Secili_OgrenciID) // öğrenciyi bulduk
+                {
+                    Console.WriteLine(Program.ogrenciler[i].ToString());
+                    Boolean dersidahaoncealmismi = false;
+                    for (int j = 0; j < Program.ogrenciler[i].alinandersler.Count; j++)
+                    {
+                        if (Program.ogrenciler[i].alinandersler[j].dersID.Equals(dersfiltresiTextBox.Text) || Program.ogrenciler[i].alinandersler[j].dersadi.Equals(dersfiltresiTextBox.Text))
+                        {
+                            dersidahaoncealmismi=true;
+                            Console.WriteLine("BU DERSİ ALAMAZSIN");
+                            MessageBox.Show("Bu öğrenci bu dersi almış", "İşlem Hatalı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            // dersi bulduk
+                            break;
+                        }
+                    }
+                    if (!dersidahaoncealmismi && dersfiltresiTextBox.Text!=null) // Dersi daha önce almamış. 
+                    {
+                        Console.WriteLine("BU DERSİ ALABİLİRSİN");
+                        for(int j = 0; j < ogretmen.verilendersler.Count; j++)
+                        {
+                            if (ogretmen.verilendersler[j].dersID.Equals(dersfiltresiTextBox.Text) || ogretmen.verilendersler[j].dersadi.Equals(dersfiltresiTextBox.Text))
+                            {
+                                //dersi bulduk. Ekleyebiliriz
+                                DersNotlari dersNotlari = new DersNotlari();
+                                dersNotlari.dersID = ogretmen.verilendersler[j].dersID;
+                                dersNotlari.dersadi = ogretmen.verilendersler[j].dersID;
+                                dersNotlari.dersiverenhocaID = ogretmen.ID;
+                                dersNotlari.sayisalnot = 0;
+                                dersNotlari.harfnotu = "Not Yok";
+                                Program.ogrenciler[i].alinandersler.Add(dersNotlari);
+                                ogretmen.kontenjan = ogretmen.kontenjan - 1; // SETTER İLE DEĞİŞTİR
+                                kontenjanLabel.Text = "Kontenjan = " + ogretmen.kontenjan;
+
+
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
         }
     }
 }
