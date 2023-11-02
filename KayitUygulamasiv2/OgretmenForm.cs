@@ -389,5 +389,19 @@ namespace KayitUygulamasiv2
                 }
             }
         }
+
+        private void ogrenciyidersinealButton_Click(object sender, EventArgs e)
+        {
+            int selectedRowIndex = dersalabilecekogrencilerGridView.SelectedCells[0].RowIndex;
+
+            // Seçilen satırın değerlerini al
+            DataGridViewRow selectedRow = dersalabilecekogrencilerGridView.Rows[selectedRowIndex];
+
+            // Örnek olarak satırdaki hücrelerden birini al
+            //string Secili_DersID = selectedRow.Cells["Ders ID"].Value.ToString();
+            int Secili_OgrenciID = int.Parse(selectedRow.Cells["ID"].Value.ToString());
+            // daha önce dersi alıp almadığını kontrol et sonra ekle
+            
+        }
     }
 }

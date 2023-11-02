@@ -54,6 +54,7 @@
             this.talepleryenileButton = new System.Windows.Forms.Button();
             this.talepreddetButton = new System.Windows.Forms.Button();
             this.talepkabulButton = new System.Windows.Forms.Button();
+            this.ogrenciyidersinealButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ogretmenVerilenDerslerGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dersalabilecekogrencilerGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dersiAlanOgrencilerdataGridView)).BeginInit();
@@ -296,11 +297,22 @@
             this.talepkabulButton.UseVisualStyleBackColor = true;
             this.talepkabulButton.Click += new System.EventHandler(this.talepkabulButton_Click);
             // 
+            // ogrenciyidersinealButton
+            // 
+            this.ogrenciyidersinealButton.Location = new System.Drawing.Point(1187, 197);
+            this.ogrenciyidersinealButton.Name = "ogrenciyidersinealButton";
+            this.ogrenciyidersinealButton.Size = new System.Drawing.Size(144, 30);
+            this.ogrenciyidersinealButton.TabIndex = 33;
+            this.ogrenciyidersinealButton.Text = "Öğrenciyi Dersine Al";
+            this.ogrenciyidersinealButton.UseVisualStyleBackColor = true;
+            this.ogrenciyidersinealButton.Click += new System.EventHandler(this.ogrenciyidersinealButton_Click);
+            // 
             // OgretmenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1343, 640);
+            this.Controls.Add(this.ogrenciyidersinealButton);
             this.Controls.Add(this.talepkabulButton);
             this.Controls.Add(this.talepreddetButton);
             this.Controls.Add(this.talepleryenileButton);
@@ -367,5 +379,6 @@
         private System.Windows.Forms.Button talepleryenileButton;
         private System.Windows.Forms.Button talepreddetButton;
         private System.Windows.Forms.Button talepkabulButton;
+        private System.Windows.Forms.Button ogrenciyidersinealButton;
     }
 }
