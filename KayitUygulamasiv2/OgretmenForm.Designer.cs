@@ -48,8 +48,16 @@
             this.kritikderssilbutton = new System.Windows.Forms.Button();
             this.kritikDerslerListBox = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.dersialanogrencilerButton = new System.Windows.Forms.Button();
+            this.dersiAlanOgrencilerdataGridView = new System.Windows.Forms.DataGridView();
+            this.ogrenciTalepDataGridView = new System.Windows.Forms.DataGridView();
+            this.talepleryenileButton = new System.Windows.Forms.Button();
+            this.talepreddetButton = new System.Windows.Forms.Button();
+            this.talepkabulButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ogretmenVerilenDerslerGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dersalabilecekogrencilerGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dersiAlanOgrencilerdataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ogrenciTalepDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // ogretmenVerilenDerslerGridView
@@ -66,7 +74,7 @@
             this.ilgiAlanlariListBox.FormattingEnabled = true;
             this.ilgiAlanlariListBox.Location = new System.Drawing.Point(12, 87);
             this.ilgiAlanlariListBox.Name = "ilgiAlanlariListBox";
-            this.ilgiAlanlariListBox.Size = new System.Drawing.Size(154, 212);
+            this.ilgiAlanlariListBox.Size = new System.Drawing.Size(154, 173);
             this.ilgiAlanlariListBox.TabIndex = 12;
             // 
             // label1
@@ -126,7 +134,7 @@
             // 
             // ilgialanisil
             // 
-            this.ilgialanisil.Location = new System.Drawing.Point(12, 363);
+            this.ilgialanisil.Location = new System.Drawing.Point(12, 331);
             this.ilgialanisil.Name = "ilgialanisil";
             this.ilgialanisil.Size = new System.Drawing.Size(154, 26);
             this.ilgialanisil.TabIndex = 15;
@@ -136,7 +144,7 @@
             // 
             // ilgialanieklebutton
             // 
-            this.ilgialanieklebutton.Location = new System.Drawing.Point(12, 331);
+            this.ilgialanieklebutton.Location = new System.Drawing.Point(12, 299);
             this.ilgialanieklebutton.Name = "ilgialanieklebutton";
             this.ilgialanieklebutton.Size = new System.Drawing.Size(154, 26);
             this.ilgialanieklebutton.TabIndex = 16;
@@ -146,7 +154,7 @@
             // 
             // ilgialaniekleTextBox
             // 
-            this.ilgialaniekleTextBox.Location = new System.Drawing.Point(12, 305);
+            this.ilgialaniekleTextBox.Location = new System.Drawing.Point(12, 273);
             this.ilgialaniekleTextBox.Name = "ilgialaniekleTextBox";
             this.ilgialaniekleTextBox.Size = new System.Drawing.Size(154, 20);
             this.ilgialaniekleTextBox.TabIndex = 17;
@@ -173,17 +181,17 @@
             // 
             this.sıralaButton.Location = new System.Drawing.Point(1187, 68);
             this.sıralaButton.Name = "sıralaButton";
-            this.sıralaButton.Size = new System.Drawing.Size(144, 23);
+            this.sıralaButton.Size = new System.Drawing.Size(144, 35);
             this.sıralaButton.TabIndex = 20;
-            this.sıralaButton.Text = "Ders Filtresi Uygula";
+            this.sıralaButton.Text = "Ders İçin Uygun Öğrencileri Sırala";
             this.sıralaButton.UseVisualStyleBackColor = true;
             this.sıralaButton.Click += new System.EventHandler(this.sıralaButton_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1187, 97);
+            this.button1.Location = new System.Drawing.Point(1187, 109);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(144, 46);
+            this.button1.Size = new System.Drawing.Size(144, 37);
             this.button1.TabIndex = 21;
             this.button1.Text = "İlgi Alanlarına Göre Filtre Uygula";
             this.button1.UseVisualStyleBackColor = true;
@@ -191,14 +199,14 @@
             // 
             // kritikdersekleTextBox
             // 
-            this.kritikdersekleTextBox.Location = new System.Drawing.Point(172, 305);
+            this.kritikdersekleTextBox.Location = new System.Drawing.Point(172, 273);
             this.kritikdersekleTextBox.Name = "kritikdersekleTextBox";
             this.kritikdersekleTextBox.Size = new System.Drawing.Size(154, 20);
             this.kritikdersekleTextBox.TabIndex = 26;
             // 
             // kritikderseklebutton
             // 
-            this.kritikderseklebutton.Location = new System.Drawing.Point(172, 331);
+            this.kritikderseklebutton.Location = new System.Drawing.Point(172, 299);
             this.kritikderseklebutton.Name = "kritikderseklebutton";
             this.kritikderseklebutton.Size = new System.Drawing.Size(154, 26);
             this.kritikderseklebutton.TabIndex = 25;
@@ -208,7 +216,7 @@
             // 
             // kritikderssilbutton
             // 
-            this.kritikderssilbutton.Location = new System.Drawing.Point(172, 363);
+            this.kritikderssilbutton.Location = new System.Drawing.Point(172, 331);
             this.kritikderssilbutton.Name = "kritikderssilbutton";
             this.kritikderssilbutton.Size = new System.Drawing.Size(154, 26);
             this.kritikderssilbutton.TabIndex = 24;
@@ -221,7 +229,7 @@
             this.kritikDerslerListBox.FormattingEnabled = true;
             this.kritikDerslerListBox.Location = new System.Drawing.Point(172, 87);
             this.kritikDerslerListBox.Name = "kritikDerslerListBox";
-            this.kritikDerslerListBox.Size = new System.Drawing.Size(154, 212);
+            this.kritikDerslerListBox.Size = new System.Drawing.Size(154, 173);
             this.kritikDerslerListBox.TabIndex = 23;
             // 
             // label3
@@ -233,11 +241,72 @@
             this.label3.TabIndex = 22;
             this.label3.Text = "Kritik Dersler";
             // 
+            // dersialanogrencilerButton
+            // 
+            this.dersialanogrencilerButton.Location = new System.Drawing.Point(1187, 152);
+            this.dersialanogrencilerButton.Name = "dersialanogrencilerButton";
+            this.dersialanogrencilerButton.Size = new System.Drawing.Size(144, 39);
+            this.dersialanogrencilerButton.TabIndex = 27;
+            this.dersialanogrencilerButton.Text = "Bu Dersi Alan Öğrencileri \r\nSırala";
+            this.dersialanogrencilerButton.UseVisualStyleBackColor = true;
+            this.dersialanogrencilerButton.Click += new System.EventHandler(this.dersialanogrencilerButton_Click);
+            // 
+            // dersiAlanOgrencilerdataGridView
+            // 
+            this.dersiAlanOgrencilerdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dersiAlanOgrencilerdataGridView.Location = new System.Drawing.Point(609, 363);
+            this.dersiAlanOgrencilerdataGridView.Name = "dersiAlanOgrencilerdataGridView";
+            this.dersiAlanOgrencilerdataGridView.Size = new System.Drawing.Size(572, 265);
+            this.dersiAlanOgrencilerdataGridView.TabIndex = 28;
+            // 
+            // ogrenciTalepDataGridView
+            // 
+            this.ogrenciTalepDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ogrenciTalepDataGridView.Location = new System.Drawing.Point(16, 363);
+            this.ogrenciTalepDataGridView.Name = "ogrenciTalepDataGridView";
+            this.ogrenciTalepDataGridView.Size = new System.Drawing.Size(587, 265);
+            this.ogrenciTalepDataGridView.TabIndex = 29;
+            // 
+            // talepleryenileButton
+            // 
+            this.talepleryenileButton.Location = new System.Drawing.Point(1187, 538);
+            this.talepleryenileButton.Name = "talepleryenileButton";
+            this.talepleryenileButton.Size = new System.Drawing.Size(154, 26);
+            this.talepleryenileButton.TabIndex = 30;
+            this.talepleryenileButton.Text = "Talepleri Göster";
+            this.talepleryenileButton.UseVisualStyleBackColor = true;
+            this.talepleryenileButton.Click += new System.EventHandler(this.talepleryenileButton_Click);
+            // 
+            // talepreddetButton
+            // 
+            this.talepreddetButton.Location = new System.Drawing.Point(1187, 602);
+            this.talepreddetButton.Name = "talepreddetButton";
+            this.talepreddetButton.Size = new System.Drawing.Size(154, 26);
+            this.talepreddetButton.TabIndex = 31;
+            this.talepreddetButton.Text = "Talebi Reddet";
+            this.talepreddetButton.UseVisualStyleBackColor = true;
+            // 
+            // talepkabulButton
+            // 
+            this.talepkabulButton.Location = new System.Drawing.Point(1187, 570);
+            this.talepkabulButton.Name = "talepkabulButton";
+            this.talepkabulButton.Size = new System.Drawing.Size(154, 26);
+            this.talepkabulButton.TabIndex = 32;
+            this.talepkabulButton.Text = "Talebi Kabul Et";
+            this.talepkabulButton.UseVisualStyleBackColor = true;
+            this.talepkabulButton.Click += new System.EventHandler(this.talepkabulButton_Click);
+            // 
             // OgretmenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1343, 640);
+            this.Controls.Add(this.talepkabulButton);
+            this.Controls.Add(this.talepreddetButton);
+            this.Controls.Add(this.talepleryenileButton);
+            this.Controls.Add(this.ogrenciTalepDataGridView);
+            this.Controls.Add(this.dersiAlanOgrencilerdataGridView);
+            this.Controls.Add(this.dersialanogrencilerButton);
             this.Controls.Add(this.kritikdersekleTextBox);
             this.Controls.Add(this.kritikderseklebutton);
             this.Controls.Add(this.kritikderssilbutton);
@@ -263,6 +332,8 @@
             this.Load += new System.EventHandler(this.OgretmenForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ogretmenVerilenDerslerGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dersalabilecekogrencilerGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dersiAlanOgrencilerdataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ogrenciTalepDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,5 +361,11 @@
         private System.Windows.Forms.Button kritikderssilbutton;
         private System.Windows.Forms.ListBox kritikDerslerListBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button dersialanogrencilerButton;
+        private System.Windows.Forms.DataGridView dersiAlanOgrencilerdataGridView;
+        private System.Windows.Forms.DataGridView ogrenciTalepDataGridView;
+        private System.Windows.Forms.Button talepleryenileButton;
+        private System.Windows.Forms.Button talepreddetButton;
+        private System.Windows.Forms.Button talepkabulButton;
     }
 }

@@ -29,7 +29,7 @@ namespace KayitUygulamasiv2
                     Console.WriteLine("OGRENCİYİ BULDUK : " + Program.ogrenciler[i].ToString());
                     if (Program.ogrenciler[i].sifre.Equals(girisSifreTextBox.Text))
                     {
-                        this.Visible = false;
+                        //this.Visible = false;
                         OgrenciForm ogrenciform = new OgrenciForm(Program.ogrenciler[i]);
                         ogrenciform.Visible= true;
                     }
@@ -58,7 +58,7 @@ namespace KayitUygulamasiv2
                     Console.WriteLine("OGRETMENİ BULDUK : " + Program.ogretmenler[i].ToString());
                     if (Program.ogretmenler[i].sifre.Equals(girisSifreTextBox.Text))
                     {
-                        this.Visible = false;
+                       // this.Visible = false;
                         OgretmenForm ogretmenform = new OgretmenForm(Program.ogretmenler[i]);
                         ogretmenform.Show();
                     }
@@ -81,7 +81,7 @@ namespace KayitUygulamasiv2
         {
             if (int.Parse(girisIDtextBox.Text) == Program.yonetici.ID && Program.yonetici.Parola.Equals(girisSifreTextBox.Text))
             {
-               this.Visible=false;
+              // this.Visible=false;
                yoneticiForm yoneticiform = new yoneticiForm(Program.yonetici);
                 yoneticiform.Show();
                

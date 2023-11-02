@@ -21,13 +21,14 @@ namespace KayitUygulamasiv2
             ogretmenVerilenDerslerGridView.ColumnCount = 2; // Kaç sütun olacağını belirleyin
             ogretmenVerilenDerslerGridView.Columns[0].Name = "Ders ID";
             ogretmenVerilenDerslerGridView.Columns[1].Name = "Ders Adı";
-
+            ogretmenVerilenDerslerGridView.ScrollBars = ScrollBars.Both;
             dersalabilecekogrencilerGridView.ColumnCount = 5;
             dersalabilecekogrencilerGridView.Columns[0].Name = "İsim";
             dersalabilecekogrencilerGridView.Columns[1].Name = "Soy isim";
             dersalabilecekogrencilerGridView.Columns[2].Name = "ID";
             dersalabilecekogrencilerGridView.Columns[3].Name = "AGNO";
             dersalabilecekogrencilerGridView.Columns[4].Name = "Kritik Değer";
+            dersalabilecekogrencilerGridView.ScrollBars = ScrollBars.Both;
 
 
 
@@ -40,7 +41,6 @@ namespace KayitUygulamasiv2
         public double kritikDegerHesaplama(Ogretmen gelenogretmen,Ogrenci gelenogrenci)
         {
             double kritikdeger=0;
-            int tumnotlar = 0;
             for(int i= 0;i<gelenogretmen.kritikdersler.Count;i++)
             {
                 for(int j = 0; j < gelenogrenci.alinandersler.Count; j++)
@@ -76,8 +76,8 @@ namespace KayitUygulamasiv2
             }
             for(int i = 0; i < Program.ogrenciler.Count; i++)
             {
-                for(int j = 0; j < Program.ogrenciler[i].ilgialanlari.Count; j++) 
-                {
+               // for(int j = 0; j < Program.ogrenciler[i].ilgialanlari.Count; j++) 
+                //{
                     //  if (ogretmen.ilgialanlari.Contains(Program.ogrenciler[i].ilgialanlari[j])){ //ilgi alanları eşleşti
                     //if (){
                         DataGridViewRow dataGridViewRow = new DataGridViewRow();
@@ -89,10 +89,10 @@ namespace KayitUygulamasiv2
                         dataGridViewRow.Cells[4].Value = kritikDegerHesaplama(ogretmen, Program.ogrenciler[i]);
                         dersalabilecekogrencilerGridView.Rows.Add(dataGridViewRow);
                     //}
-                }
+               // }
             }
 
-            Program.baglanti.Open();
+            
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -269,6 +269,124 @@ namespace KayitUygulamasiv2
                     }
                 }
 
+            }
+        }
+
+        private void dersialanogrencilerButton_Click(object sender, EventArgs e)
+        {
+            dersiAlanOgrencilerdataGridView.Rows.Clear();
+            dersiAlanOgrencilerdataGridView.ColumnCount = 7;
+            dersiAlanOgrencilerdataGridView.Columns[0].Name="İsim";
+            dersiAlanOgrencilerdataGridView.Columns[1].Name="Soyisim";
+            dersiAlanOgrencilerdataGridView.Columns[2].Name="ID";
+            dersiAlanOgrencilerdataGridView.Columns[3].Name="AGNO";
+            dersiAlanOgrencilerdataGridView.Columns[4].Name="Talep Sayısı";
+            dersiAlanOgrencilerdataGridView.Columns[5].Name="Sayısal Not";
+            dersiAlanOgrencilerdataGridView.Columns[6].Name = "Harf Notu";
+            for (int i = 0; i < Program.ogrenciler.Count; i++)
+            {
+                //Boolean dersialmismi = false;
+                for (int j = 0; j < Program.ogrenciler[i].alinandersler.Count; j++)
+                {
+                    if (Program.ogrenciler[i].alinandersler[j].dersID.Equals(dersfiltresiTextBox.Text) || Program.ogrenciler[i].alinandersler[j].dersadi.Equals(dersfiltresiTextBox.Text))
+                    {
+                        //dersialmismi = true;
+                        DataGridViewRow dataGridViewRow = new DataGridViewRow();
+                        dataGridViewRow.CreateCells(dersiAlanOgrencilerdataGridView);
+                        dataGridViewRow.Cells[0].Value = Program.ogrenciler[i].isim;
+                        dataGridViewRow.Cells[1].Value = Program.ogrenciler[i].soyisim;
+                        dataGridViewRow.Cells[2].Value = Program.ogrenciler[i].ID;
+                        dataGridViewRow.Cells[3].Value = Program.ogrenciler[i].AGNO;
+                        dataGridViewRow.Cells[4].Value = Program.ogrenciler[i].talepsayisi;
+                        dataGridViewRow.Cells[5].Value = Program.ogrenciler[i].alinandersler[j].sayisalnot;
+                        dataGridViewRow.Cells[6].Value = Program.ogrenciler[i].alinandersler[j].harfnotu;
+                        dersiAlanOgrencilerdataGridView.Rows.Add(dataGridViewRow);
+                        break;
+                    }
+                    //  if (ogretmen.ilgialanlari.Contains(Program.ogrenciler[i].ilgialanlari[j])){ //ilgi alanları eşleşti
+                }
+            }
+        }
+
+        private void talepleryenileButton_Click(object sender, EventArgs e)
+        {
+            ogrenciTalepDataGridView.Rows.Clear();
+            ogrenciTalepDataGridView.ColumnCount = 9;
+            ogrenciTalepDataGridView.Columns[0].Name = "Talep ID";
+            ogrenciTalepDataGridView.Columns[1].Name = "İsim";
+            ogrenciTalepDataGridView.Columns[2].Name = "Soyisim";
+            ogrenciTalepDataGridView.Columns[3].Name = "Ogrenci ID";
+            ogrenciTalepDataGridView.Columns[4].Name = "AGNO";
+            ogrenciTalepDataGridView.Columns[5].Name = "Talep Sayısı";
+            ogrenciTalepDataGridView.Columns[6].Name = "DersID"; 
+            ogrenciTalepDataGridView.Columns[7].Name = "Ders Adı";
+            ogrenciTalepDataGridView.Columns[8].Name = "Durum";
+
+            for(int i=0;i < Program.talepler.Count;i++)
+            {
+                if (Program.talepler[i].ogretmen.ID == ogretmen.ID)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(ogrenciTalepDataGridView);
+                    row.Cells[0].Value = Program.talepler[i].TalepID;
+                    row.Cells[1].Value = Program.talepler[i].ogrenci.isim;
+                    row.Cells[2].Value = Program.talepler[i].ogrenci.soyisim;
+                    row.Cells[3].Value = Program.talepler[i].ogrenci.ID;
+                    row.Cells[4].Value = Program.talepler[i].ogrenci.AGNO;
+                    row.Cells[5].Value = Program.talepler[i].ogrenci.talepsayisi;
+                    row.Cells[6].Value = Program.talepler[i].ders.dersID;
+                    row.Cells[7].Value = Program.talepler[i].ders.dersadi;
+                    row.Cells[8].Value = Program.talepler[i].durum;
+                    ogrenciTalepDataGridView.Rows.Add(row);
+                }
+            }
+        }
+
+        private void talepkabulButton_Click(object sender, EventArgs e)
+        {
+            int selectedRowIndex = ogrenciTalepDataGridView.SelectedCells[0].RowIndex;
+
+            // Seçilen satırın değerlerini al
+            DataGridViewRow selectedRow = ogrenciTalepDataGridView.Rows[selectedRowIndex];
+
+            // Örnek olarak satırdaki hücrelerden birini al
+            //string Secili_DersID = selectedRow.Cells["Ders ID"].Value.ToString();
+            int Secili_TalepID = int.Parse(selectedRow.Cells["Talep ID"].Value.ToString());
+            for(int i=0;i<Program.talepler.Count;i++)
+            {
+                if (Program.talepler[i].TalepID == Secili_TalepID) // talebi tuttuk "i"
+                {
+                    if (Program.talepler[i].durum.Equals("bekliyor")) // eğer talep beklenen bir talep ise
+                    {
+                        Boolean dersidahaoncedenaliyormu=false;
+                        for(int j = 0; j < Program.talepler[i].ogrenci.alinandersler.Count;j++)
+                        {
+                            if (Program.talepler[i].ogrenci.alinandersler[j].dersID.Equals(Program.talepler[i].ders.dersID))
+                            {
+                                dersidahaoncedenaliyormu = true;
+                                break;
+                            }
+                        }
+                        if (!dersidahaoncedenaliyormu) // dersi daha öncesinde almamış. Ekleyebiliriz
+                        {
+                            //VERİ TABANINA BAĞLA
+                            DersNotlari dersNotlari = new DersNotlari();
+                            dersNotlari.dersID = Program.talepler[i].ders.dersID;
+                            dersNotlari.dersadi = Program.talepler[i].ders.dersadi;
+                            dersNotlari.dersiverenhocaID = Program.talepler[i].ders.dersiverenhocaID;
+                            dersNotlari.sayisalnot = 0;
+                            dersNotlari.harfnotu = "Not Yok";
+                            Program.talepler[i].ogrenci.alinandersler.Add(dersNotlari);
+                            Program.talepler[i].durum = "onay";
+                            ogretmen.kontenjan = ogretmen.kontenjan - 1; // SETTER İLE DEĞİŞTİR
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bu Talep Sonuçlanmış", "İşlem Hatalı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        break;
+                    }
+                }
             }
         }
     }

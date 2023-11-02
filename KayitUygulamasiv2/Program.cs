@@ -457,9 +457,9 @@ namespace KayitUygulamasiv2
                 Console.WriteLine(talepler[i].ToString()+"\n");
             }
 
-           // ogrenciler[0].setTalepsayisi(15);
-           // Console.WriteLine("setTalepsayisi returns talepsayisi="+ ogrenciler[0].talepsayisi);
-
+            // ogrenciler[0].setTalepsayisi(15);
+            // Console.WriteLine("setTalepsayisi returns talepsayisi="+ ogrenciler[0].talepsayisi);
+            Program.baglanti.Open(); // yeri değişti (2 kasım perşembe saat 01:45)
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new GirisEkrani());

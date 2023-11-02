@@ -48,6 +48,13 @@ namespace KayitUygulamasiv2
             AGNOLabel.Text = "AGNO = " + ogrenci.AGNO;
             talepsayisiLabel.Text = "Talep Sayısı = " + ogrenci.talepsayisi;
 
+            ogrencitalepgondermedataGridView.ColumnCount = 6;
+            ogrencitalepgondermedataGridView.Columns[0].Name = "Öğretmen ID";
+            ogrencitalepgondermedataGridView.Columns[1].Name = "İsim";
+            ogrencitalepgondermedataGridView.Columns[2].Name = "Soy İsim";
+            ogrencitalepgondermedataGridView.Columns[3].Name = "Kontenjan";
+            ogrencitalepgondermedataGridView.Columns[4].Name = "Ders ID";
+            ogrencitalepgondermedataGridView.Columns[5].Name = "Ders Adı";
         }
 
         private void OgrenciİsimSoyisimLabel_Click(object sender, EventArgs e)
@@ -57,6 +64,7 @@ namespace KayitUygulamasiv2
 
         private void OgrenciForm_Load(object sender, EventArgs e)
         {
+            ogrenciDersdataGridView.Rows.Clear();
             //ilgiAlanlariListBox.DataSource = ogrenci.ilgialanlari;
             for(int i = 0; i<ogrenci.ilgialanlari.Count; i++)
             {
@@ -74,6 +82,241 @@ namespace KayitUygulamasiv2
                 row.Cells[5].Value = ogrenci.alinandersler[i].harfnotu;
                 ogrenciDersdataGridView.Rows.Add(row);
             }
+
+            for(int i = 0; i < Program.ogretmenler.Count; i++)
+            {
+                if (Program.ogretmenler[i].kontenjan > 0) // öğretmenin kontenjanı varsa
+                {
+                    for(int j = 0; j < Program.ogretmenler[i].verilendersler.Count; j++) // her öğretmenin verdiği dersler
+                    {
+                        Boolean bu_dersi_daha_once_almis_mi = false;
+                        for(int k = 0; k < ogrenci.alinandersler.Count; k++)
+                        {
+                            if (ogrenci.alinandersler[k].dersID.Equals(Program.ogretmenler[i].verilendersler[j].dersID))
+                            {
+                                bu_dersi_daha_once_almis_mi= true;
+                                break;
+                            }
+                        }
+                        if (!bu_dersi_daha_once_almis_mi) // i öğretmeninin j dersini daha önce almamışsa
+                        {
+                           
+                            DataGridViewRow row = new DataGridViewRow();
+                            row.CreateCells(ogrencitalepgondermedataGridView);
+                            row.Cells[0].Value = Program.ogretmenler[i].ID;
+                            row.Cells[1].Value = Program.ogretmenler[i].isim;
+                            row.Cells[2].Value = Program.ogretmenler[i].soyisim;
+                            row.Cells[3].Value = Program.ogretmenler[i].kontenjan;
+                            row.Cells[4].Value = Program.ogretmenler[i].verilendersler[j].dersID;
+                            row.Cells[5].Value = Program.ogretmenler[i].verilendersler[j].dersadi;
+                            ogrencitalepgondermedataGridView.Rows.Add(row);
+                        }
+                    }
+                }
+            }
+
+        }
+
+        private void talepgondertabloyenilebutton_Click(object sender, EventArgs e)
+        {
+            ogrenciDersdataGridView.Rows.Clear();
+            for (int i = 0; i < ogrenci.alinandersler.Count; i++)
+            {
+                DataGridViewRow row = new DataGridViewRow();
+                row.CreateCells(ogrenciDersdataGridView);
+                row.Cells[0].Value = ogrenci.alinandersler[i].dersID;
+                row.Cells[1].Value = ogrenci.alinandersler[i].dersadi;
+                row.Cells[2].Value = ogrenci.alinandersler[i].dersiverenhocaID;
+                row.Cells[3].Value = IDdenOgretmenBul(ogrenci.alinandersler[i].dersiverenhocaID).isim + " " + IDdenOgretmenBul(ogrenci.alinandersler[i].dersiverenhocaID).soyisim;
+                row.Cells[4].Value = ogrenci.alinandersler[i].sayisalnot;
+                row.Cells[5].Value = ogrenci.alinandersler[i].harfnotu;
+                ogrenciDersdataGridView.Rows.Add(row);
+            }
+            ogrencitalepgondermedataGridView.Rows.Clear();
+            for (int i = 0; i < Program.ogretmenler.Count; i++)
+            {
+                if (Program.ogretmenler[i].kontenjan > 0) // öğretmenin kontenjanı varsa
+                {
+                    for (int j = 0; j < Program.ogretmenler[i].verilendersler.Count; j++) // her öğretmenin verdiği dersler
+                    {
+                        Boolean bu_dersi_daha_once_almis_mi = false;
+                        for (int k = 0; k < ogrenci.alinandersler.Count; k++)
+                        {
+                            if (ogrenci.alinandersler[k].dersID.Equals(Program.ogretmenler[i].verilendersler[j].dersID))
+                            {
+                                bu_dersi_daha_once_almis_mi = true;
+                                break;
+                            }
+                        }
+                        if (!bu_dersi_daha_once_almis_mi) // i öğretmeninin j dersini daha önce almamışsa
+                        {
+                            DataGridViewRow row = new DataGridViewRow();
+                            row.CreateCells(ogrencitalepgondermedataGridView);
+                            row.Cells[0].Value = Program.ogretmenler[i].ID;
+                            row.Cells[1].Value = Program.ogretmenler[i].isim;
+                            row.Cells[2].Value = Program.ogretmenler[i].soyisim;
+                            row.Cells[3].Value = Program.ogretmenler[i].kontenjan;
+                            row.Cells[4].Value = Program.ogretmenler[i].verilendersler[j].dersID;
+                            row.Cells[5].Value = Program.ogretmenler[i].verilendersler[j].dersadi;
+                            ogrencitalepgondermedataGridView.Rows.Add(row);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void ilgialanifiltreButton_Click(object sender, EventArgs e)
+        {
+            ogrencitalepgondermedataGridView.Rows.Clear();
+            for (int i = 0; i < Program.ogretmenler.Count; i++)
+            {
+                if (Program.ogretmenler[i].kontenjan > 0) // öğretmenin kontenjanı varsa
+                {
+                    for (int j = 0; j < Program.ogretmenler[i].verilendersler.Count; j++) // her öğretmenin verdiği dersler
+                    {
+                        Boolean bu_dersi_daha_once_almis_mi = false;
+                        for (int k = 0; k < ogrenci.alinandersler.Count; k++)
+                        {
+                            if (ogrenci.alinandersler[k].dersID.Equals(Program.ogretmenler[i].verilendersler[j].dersID))
+                            {
+                                bu_dersi_daha_once_almis_mi = true;
+                                break;
+                            }
+                        }
+                        if (!bu_dersi_daha_once_almis_mi) // i öğretmeninin j dersini daha önce almamışsa
+                        {
+                            if (Program.ogretmenler[i].ilgialanlari.Contains(filtreBox.Text))
+                            {
+                                DataGridViewRow row = new DataGridViewRow();
+                                row.CreateCells(ogrencitalepgondermedataGridView);
+                                row.Cells[0].Value = Program.ogretmenler[i].ID;
+                                row.Cells[1].Value = Program.ogretmenler[i].isim;
+                                row.Cells[2].Value = Program.ogretmenler[i].soyisim;
+                                row.Cells[3].Value = Program.ogretmenler[i].kontenjan;
+                                row.Cells[4].Value = Program.ogretmenler[i].verilendersler[j].dersID;
+                                row.Cells[5].Value = Program.ogretmenler[i].verilendersler[j].dersadi;
+                                ogrencitalepgondermedataGridView.Rows.Add(row);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void dersadifltreButton_Click(object sender, EventArgs e)
+        {
+            ogrencitalepgondermedataGridView.Rows.Clear();
+            for (int i = 0; i < Program.ogretmenler.Count; i++)
+            {
+                if (Program.ogretmenler[i].kontenjan > 0) // öğretmenin kontenjanı varsa
+                {
+                    for (int j = 0; j < Program.ogretmenler[i].verilendersler.Count; j++) // her öğretmenin verdiği dersler
+                    {
+                        Boolean bu_dersi_daha_once_almis_mi = false;
+                        for (int k = 0; k < ogrenci.alinandersler.Count; k++)
+                        {
+                            if (ogrenci.alinandersler[k].dersID.Equals(Program.ogretmenler[i].verilendersler[j].dersID))
+                            {
+                                bu_dersi_daha_once_almis_mi = true;
+                                break;
+                            }
+                        }
+                        if (!bu_dersi_daha_once_almis_mi) // i öğretmeninin j dersini daha önce almamışsa
+                        {
+                            if (Program.ogretmenler[i].verilendersler[j].dersadi.Equals(filtreBox.Text) || Program.ogretmenler[i].verilendersler[j].dersID.Equals(filtreBox.Text))
+                            {
+                                DataGridViewRow row = new DataGridViewRow();
+                                row.CreateCells(ogrencitalepgondermedataGridView);
+                                row.Cells[0].Value = Program.ogretmenler[i].ID;
+                                row.Cells[1].Value = Program.ogretmenler[i].isim;
+                                row.Cells[2].Value = Program.ogretmenler[i].soyisim;
+                                row.Cells[3].Value = Program.ogretmenler[i].kontenjan;
+                                row.Cells[4].Value = Program.ogretmenler[i].verilendersler[j].dersID;
+                                row.Cells[5].Value = Program.ogretmenler[i].verilendersler[j].dersadi;
+                                ogrencitalepgondermedataGridView.Rows.Add(row);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void talepgonderButton_Click(object sender, EventArgs e)
+        {
+            // SelectionChanged olayı gerçekleştiğinde çalışan kod
+
+            // Seçilen satırın indeksini al
+            int selectedRowIndex = ogrencitalepgondermedataGridView.SelectedCells[0].RowIndex;
+
+            // Seçilen satırın değerlerini al
+            DataGridViewRow selectedRow = ogrencitalepgondermedataGridView.Rows[selectedRowIndex];
+
+            // Örnek olarak satırdaki hücrelerden birini al
+            string Secili_DersID = selectedRow.Cells["Ders ID"].Value.ToString();
+            int Secili_OgretmenID = int.Parse(selectedRow.Cells["Öğretmen ID"].Value.ToString());
+            Console.WriteLine("Secili Ders ID :" + Secili_DersID + " Secili Ogretmen ID :" + Secili_OgretmenID);
+            
+            int verilecekTalepID = 0;
+            if (Program.talepler.Count > 0)
+            {
+                
+                while(true)
+                {
+                    Boolean idverildimi = true;
+                    for(int i=0;i<Program.talepler.Count;i++) 
+                    {
+                        if (verilecekTalepID == Program.talepler[i].TalepID)
+                        {
+                            verilecekTalepID++;
+                            idverildimi=false;
+                            break;
+                        }
+                    }
+                    if(idverildimi)
+                    {
+                        Console.WriteLine("Verilecek Talep ID:" + verilecekTalepID);
+                        break;
+                    }
+                    //verilecekTalepID++;
+                }
+            }
+            Boolean taleplerdeikilemevarmi=false;
+            for(int i=0;i<Program.talepler.Count; i++)
+            {
+                if (Program.talepler[i].ders.dersID.Equals(Secili_DersID) && Program.talepler[i].ogretmen.ID == Secili_OgretmenID)
+                {
+                    taleplerdeikilemevarmi = true;
+                    break;
+                }
+            }
+            if (!taleplerdeikilemevarmi) // Talebi Talep listesine ekle
+            {
+                Talep talep = new Talep();
+
+                talep.ogrenci = ogrenci;
+                for(int i=0;i<Program.ogretmenler.Count;i++)
+                {
+                    if (Program.ogretmenler[i].ID == Secili_OgretmenID)
+                    {
+                        talep.ogretmen= Program.ogretmenler[i];
+                        break;
+                    }
+                }
+                for (int i = 0; i < Program.dersler.Count; i++)
+                {
+                    if (Program.dersler[i].dersID == Secili_DersID)
+                    {
+                        talep.ders = Program.dersler[i];
+                        break;
+                    }
+                }
+                talep.durum = "bekliyor";
+                talep.TalepID = verilecekTalepID;
+                Program.talepler.Add( talep );
+                ogrenci.talepsayisi++;
+                talepsayisiLabel.Text = "Talep Sayısı = " + ogrenci.talepsayisi;
+            }
+            
 
         }
     }
