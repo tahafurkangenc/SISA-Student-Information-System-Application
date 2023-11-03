@@ -171,6 +171,7 @@
             this.OgrenciEkleButton.TabIndex = 16;
             this.OgrenciEkleButton.Text = "Öğrenciyi Veri Tabanına Ekleyin";
             this.OgrenciEkleButton.UseVisualStyleBackColor = true;
+            this.OgrenciEkleButton.Click += new System.EventHandler(this.OgrenciEkleButton_Click);
             // 
             // OgrenciSifreLabel
             // 

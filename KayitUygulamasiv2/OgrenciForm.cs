@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -312,8 +313,10 @@ namespace KayitUygulamasiv2
                 }
                 talep.durum = "bekliyor";
                 talep.TalepID = verilecekTalepID;
+                NpgsqlCommand talepeklemekomut = new NpgsqlCommand("INSERT INTO talep (talep_id,ders_id,ogretmen_id,ogrenci_id,durum) VALUES ("+talep.TalepID+",'"+talep.ders.dersID+"',"+talep.ogretmen.ID+","+talep.ogrenci.ID+",'bekliyor');", Program.baglanti);
+                talepeklemekomut.ExecuteNonQuery();
                 Program.talepler.Add( talep );
-                ogrenci.talepsayisi++;
+                ogrenci.setTalepsayisi(ogrenci.talepsayisi + 1);
                 talepsayisiLabel.Text = "Talep Sayısı = " + ogrenci.talepsayisi;
             }
             

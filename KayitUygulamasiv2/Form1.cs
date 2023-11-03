@@ -113,5 +113,65 @@ namespace KayitUygulamasiv2
         {
 
         }
+
+        private void OgrenciEkleButton_Click(object sender, EventArgs e)
+        {
+            
+            String[] derslerinisimleri_notlari = AlinanderskodlaririchTextBox.Text.Split('\n');
+            for(int i = 0;i < derslerinisimleri_notlari.Length; i++)
+            {
+                int sayisalnot = Program.random.Next(101);
+                String harfnot;
+                if (sayisalnot < 30)
+                {
+                    harfnot = "FF";
+                }
+                else if (sayisalnot >= 30 && sayisalnot <= 39)
+                {
+                    harfnot = "FD";
+                }
+                else if (sayisalnot >= 40 && sayisalnot <= 49)
+                {
+                    harfnot = "DD";
+                }
+                else if (sayisalnot >= 50 && sayisalnot <= 59)
+                {
+                    harfnot = "CD";
+                }
+                else if (sayisalnot >= 60 && sayisalnot <= 69)
+                {
+                    harfnot = "CC";
+                }
+                else if (sayisalnot >= 70 && sayisalnot <= 74)
+                {
+                    harfnot = "CB";
+                }
+                else if (sayisalnot >= 75 && sayisalnot <= 79)
+                {
+                    harfnot = "BB";
+                }
+                else if (sayisalnot >= 80 && sayisalnot <= 89)
+                {
+                    harfnot = "BA";
+                }
+                else // sayisalnot 90-100 arasında
+                {
+                    harfnot = "AA";
+                }
+                    
+                    Console.WriteLine("DERS ID = " + derslerinisimleri_notlari[i]);
+                    Console.WriteLine("SAYISAL NOT = "+sayisalnot);
+                    Console.WriteLine("HARF NOT = " +harfnot);
+                    Console.WriteLine();
+                
+            }
+
+            String[] ilgialanlari = richTextBox1.Text.Split('\n');
+            Console.WriteLine("ILGI ALANLARI:");
+            for(int i = 0; i < ilgialanlari.Length; i++)
+            {
+                Console.WriteLine(ilgialanlari[i]);
+            }
+        }
     }
 }

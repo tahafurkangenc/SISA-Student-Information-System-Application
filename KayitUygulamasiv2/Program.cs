@@ -41,7 +41,7 @@ namespace KayitUygulamasiv2
         public void setTalepsayisi(int talepsayisi_yeni)
         {
             this.talepsayisi=talepsayisi_yeni;
-            Program.baglanti.Open();
+            //Program.baglanti.Open();
             NpgsqlCommand talepsayisi_update = new NpgsqlCommand("UPDATE public.ogrenci SET talepsayisi = " + talepsayisi + " WHERE ogrenci_id = " + ID + ";", Program.baglanti);
             talepsayisi_update.ExecuteNonQuery();
         }
@@ -78,7 +78,7 @@ namespace KayitUygulamasiv2
         public void setKontenjan(int kontenjan_yeni)
         {
             this.kontenjan = kontenjan_yeni;
-            Program.baglanti.Open();
+           // Program.baglanti.Open();
             NpgsqlCommand talepsayisi_update = new NpgsqlCommand("UPDATE public.ogretmen SET kontenjan = "+kontenjan+" WHERE ogretmen_id = "+ID+"; ", Program.baglanti);
             talepsayisi_update.ExecuteNonQuery();
         }
@@ -180,6 +180,7 @@ namespace KayitUygulamasiv2
 
     internal static class Program
     {
+        public static Random random = new Random();
         public static NpgsqlConnection baglanti = new NpgsqlConnection("server=localHost;port=5432; Database=postgres; user ID=postgres; password=furkan254");
         public static List<Ogrenci> ogrenciler = new List<Ogrenci>();
         public static List<Ogretmen> ogretmenler = new List<Ogretmen>();
@@ -289,12 +290,12 @@ namespace KayitUygulamasiv2
                         Console.WriteLine("BULUNAN OGRENCİ :" + ogrenciler[i].isim+ " " + ogrenciler[i].soyisim);
                         for (int j = 0; j < dersler.Count; j++) // derslere bak
                         {
-                            if (dersler[j].dersID.Equals((String)row["ders_id"])) // dersi bulduk "j"
+                            if (dersler[j].dersID.Equals((String)row["ders_id"]) && dersler[j].dersiverenhocaID == (int)row["dersiverenhoca_id"]) // dersi bulduk "j"
                             {
                                 DersNotlari dersNotlari = new DersNotlari();
                                 dersNotlari.dersID = dersler[j].dersID;
                                 dersNotlari.dersadi = dersler[j].dersadi;
-                                dersNotlari.dersiverenhocaID =dersler[j].dersiverenhocaID;
+                                dersNotlari.dersiverenhocaID = dersler[j].dersiverenhocaID;
                                 dersNotlari.sayisalnot = (int)row["sayisalnot"];
                                 dersNotlari.harfnotu = (String)row["harfnot"];
                                 Console.WriteLine(dersNotlari.ToString());

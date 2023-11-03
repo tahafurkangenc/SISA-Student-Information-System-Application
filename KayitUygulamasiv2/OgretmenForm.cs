@@ -40,7 +40,7 @@ namespace KayitUygulamasiv2
 
         public double kritikDegerHesaplama(Ogretmen gelenogretmen,Ogrenci gelenogrenci) 
         {
-            double kritikdeger=0;
+            /*double kritikdeger=0;
             for(int i= 0;i<gelenogretmen.kritikdersler.Count;i++)
             {
                 for(int j = 0; j < gelenogrenci.alinandersler.Count; j++)
@@ -52,7 +52,8 @@ namespace KayitUygulamasiv2
                     }
                 }
             }
-            return kritikdeger/gelenogretmen.kritikdersler.Count;
+            return kritikdeger/gelenogretmen.kritikdersler.Count;*/
+            return 0;
         }
 
         private void OgretmenForm_Load(object sender, EventArgs e)
@@ -369,7 +370,7 @@ namespace KayitUygulamasiv2
                         }
                         if (!dersidahaoncedenaliyormu) // dersi daha öncesinde almamış. Ekleyebiliriz
                         {
-                            //VERİ TABANINA BAĞLA
+                            //VERİ TABANINA BAĞLADIM 
                             DersNotlari dersNotlari = new DersNotlari();
                             dersNotlari.dersID = Program.talepler[i].ders.dersID;
                             dersNotlari.dersadi = Program.talepler[i].ders.dersadi;
@@ -378,8 +379,13 @@ namespace KayitUygulamasiv2
                             dersNotlari.harfnotu = "Not Yok";
                             Program.talepler[i].ogrenci.alinandersler.Add(dersNotlari);
                             Program.talepler[i].durum = "onay";
-                            ogretmen.kontenjan = ogretmen.kontenjan - 1; // SETTER İLE DEĞİŞTİR
+                            NpgsqlCommand talepdurumguncellemesikomut = new NpgsqlCommand("UPDATE talep SET durum = 'onay' WHERE talep_id=" + Program.talepler[i].TalepID+";", Program.baglanti);
+                            talepdurumguncellemesikomut.ExecuteNonQuery();
+                            ogretmen.setKontenjan(ogretmen.kontenjan - 1);
+                            //ogretmen.kontenjan = ogretmen.kontenjan - 1; // SETTER İLE DEĞİŞTİR
                             kontenjanLabel.Text = "Kontenjan = " + ogretmen.kontenjan;
+                            NpgsqlCommand dersnotlarieklemekomut = new NpgsqlCommand(" INSERT INTO alinandersler (ogrenci_id,ders_id,sayisalnot,harfnot,dersiverenhoca_id) VALUES ("+ Program.talepler[i].ogrenci.ID+ ",'"+ Program.talepler[i].ders.dersID+"',0,'Not Yok',"+ Program.talepler[i].ders.dersiverenhocaID + ");", Program.baglanti);
+                            dersnotlarieklemekomut.ExecuteNonQuery();
                         }
                     }
                     else
@@ -414,7 +420,7 @@ namespace KayitUygulamasiv2
                         if (Program.ogrenciler[i].alinandersler[j].dersID.Equals(dersfiltresiTextBox.Text) || Program.ogrenciler[i].alinandersler[j].dersadi.Equals(dersfiltresiTextBox.Text))
                         {
                             dersidahaoncealmismi=true;
-                            Console.WriteLine("BU DERSİ ALAMAZSIN");
+                            Console.WriteLine("BU OGRENCI BU DERSI ALAMAZ");
                             MessageBox.Show("Bu öğrenci bu dersi almış", "İşlem Hatalı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             // dersi bulduk
                             break;
@@ -422,22 +428,25 @@ namespace KayitUygulamasiv2
                     }
                     if (!dersidahaoncealmismi && dersfiltresiTextBox.Text!=null) // Dersi daha önce almamış. 
                     {
-                        Console.WriteLine("BU DERSİ ALABİLİRSİN");
+                        Console.WriteLine("BU OGRENCI BU DERSI ALABILIR");
                         for(int j = 0; j < ogretmen.verilendersler.Count; j++)
                         {
                             if (ogretmen.verilendersler[j].dersID.Equals(dersfiltresiTextBox.Text) || ogretmen.verilendersler[j].dersadi.Equals(dersfiltresiTextBox.Text))
                             {
                                 //dersi bulduk. Ekleyebiliriz
+                                // VERİ TABANINA BAĞLADIM
                                 DersNotlari dersNotlari = new DersNotlari();
                                 dersNotlari.dersID = ogretmen.verilendersler[j].dersID;
-                                dersNotlari.dersadi = ogretmen.verilendersler[j].dersID;
+                                dersNotlari.dersadi = ogretmen.verilendersler[j].dersadi;
                                 dersNotlari.dersiverenhocaID = ogretmen.ID;
                                 dersNotlari.sayisalnot = 0;
                                 dersNotlari.harfnotu = "Not Yok";
                                 Program.ogrenciler[i].alinandersler.Add(dersNotlari);
-                                ogretmen.kontenjan = ogretmen.kontenjan - 1; // SETTER İLE DEĞİŞTİR
+                                ogretmen.setKontenjan(ogretmen.kontenjan - 1);
+                                //ogretmen.kontenjan = ogretmen.kontenjan - 1; // SETTER İLE DEĞİŞTİR
                                 kontenjanLabel.Text = "Kontenjan = " + ogretmen.kontenjan;
-
+                                NpgsqlCommand dersnotlarieklemekomut = new NpgsqlCommand(" INSERT INTO alinandersler (ogrenci_id,ders_id,sayisalnot,harfnot,dersiverenhoca_id) VALUES (" + Program.ogrenciler[i].ID + ",'" + ogretmen.verilendersler[j].dersID + "',0,'Not Yok'," + ogretmen.ID + ");", Program.baglanti);
+                                dersnotlarieklemekomut.ExecuteNonQuery();
 
                             }
                         }
