@@ -286,6 +286,7 @@
             this.talepreddetButton.TabIndex = 31;
             this.talepreddetButton.Text = "Talebi Reddet";
             this.talepreddetButton.UseVisualStyleBackColor = true;
+            this.talepreddetButton.Click += new System.EventHandler(this.talepreddetButton_Click);
             // 
             // talepkabulButton
             // 

@@ -455,5 +455,34 @@ namespace KayitUygulamasiv2
                 }
             }
         }
+
+        private void talepreddetButton_Click(object sender, EventArgs e)
+        {
+            int selectedRowIndex = ogrenciTalepDataGridView.SelectedCells[0].RowIndex;
+
+            // Seçilen satırın değerlerini al
+            DataGridViewRow selectedRow = ogrenciTalepDataGridView.Rows[selectedRowIndex];
+
+            // Örnek olarak satırdaki hücrelerden birini al
+            //string Secili_DersID = selectedRow.Cells["Ders ID"].Value.ToString();
+            int Secili_TalepID = int.Parse(selectedRow.Cells["Talep ID"].Value.ToString());
+            for (int i = 0; i < Program.talepler.Count; i++)
+            {
+                if (Program.talepler[i].TalepID == Secili_TalepID) // talebi tuttuk "i"
+                {
+                    if (Program.talepler[i].durum.Equals("bekliyor")) // eğer talep beklenen bir talep ise
+                    { 
+                        Program.talepler[i].durum = "red";
+                        NpgsqlCommand talepdurumguncellemesikomut = new NpgsqlCommand("UPDATE talep SET durum = 'red' WHERE talep_id=" + Program.talepler[i].TalepID + ";", Program.baglanti);
+                        talepdurumguncellemesikomut.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bu Talep Sonuçlanmış", "İşlem Hatalı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

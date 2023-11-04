@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -116,9 +117,15 @@ namespace KayitUygulamasiv2
 
         private void OgrenciEkleButton_Click(object sender, EventArgs e)
         {
-            
-            String[] derslerinisimleri_notlari = AlinanderskodlaririchTextBox.Text.Split('\n');
-            for(int i = 0;i < derslerinisimleri_notlari.Length; i++)
+            Ogrenci ogrenci = new Ogrenci();
+            ogrenci.isim = OgrenciisimTextBox.Text;
+            ogrenci.soyisim = OgrencisoyisimTextBox.Text;
+            ogrenci.ID = int.Parse(OgrenciIDTextBox.Text);
+            ogrenci.sifre = OgrencisifreTextBox.Text;
+            ogrenci.AGNO = double.Parse(AgnoTextBox.Text);
+            ogrenci.talepsayisi = 0;
+            String[] derslerinisimleri_ID = AlinanderskodlaririchTextBox.Text.Split('\n');
+            for(int i = 0;i < derslerinisimleri_ID.Length; i++)
             {
                 int sayisalnot = Program.random.Next(101);
                 String harfnot;
@@ -158,20 +165,71 @@ namespace KayitUygulamasiv2
                 {
                     harfnot = "AA";
                 }
-                    
-                    Console.WriteLine("DERS ID = " + derslerinisimleri_notlari[i]);
-                    Console.WriteLine("SAYISAL NOT = "+sayisalnot);
-                    Console.WriteLine("HARF NOT = " +harfnot);
-                    Console.WriteLine();
+                List<Ders> dersihtimalleri = new List<Ders>();
+                for(int j = 0; j < Program.dersler.Count; j++)
+                {
+                    if (Program.dersler[j].dersID.Equals(derslerinisimleri_ID[i].Trim()))
+                    {
+                        dersihtimalleri.Add(Program.dersler[j]);
+                    }
+                }
+                if(dersihtimalleri.Count > 0)
+                {
+                    int rastgeleindis = Program.random.Next(dersihtimalleri.Count);
+                    DersNotlari eklenecekdersnotlari= new DersNotlari();
+                    eklenecekdersnotlari.dersID = dersihtimalleri[rastgeleindis].dersID;
+                    eklenecekdersnotlari.dersadi = dersihtimalleri[rastgeleindis].dersadi;
+                    eklenecekdersnotlari.dersiverenhocaID = dersihtimalleri[rastgeleindis].dersiverenhocaID;
+                    eklenecekdersnotlari.sayisalnot= sayisalnot;
+                    eklenecekdersnotlari.harfnotu = harfnot;
+                    ogrenci.alinandersler.Add(eklenecekdersnotlari);
+                }
                 
             }
 
-            String[] ilgialanlari = richTextBox1.Text.Split('\n');
+            String[] eklenenilgialanlari = richTextBox1.Text.Split('\n');
             Console.WriteLine("ILGI ALANLARI:");
-            for(int i = 0; i < ilgialanlari.Length; i++)
+            for(int i = 0; i < eklenenilgialanlari.Length; i++)
             {
-                Console.WriteLine(ilgialanlari[i]);
+                for(int j = 0; j < Program.ilgialanlari.Count; j++)
+                {
+                    if (Program.ilgialanlari[j].ilgialaniadi.Equals(eklenenilgialanlari[i].Trim()))
+                    {
+                        ogrenci.ilgialanlari.Add(eklenenilgialanlari[i].Trim());
+                        break;
+                    }
+                }
             }
+
+            NpgsqlCommand ogrencitabloeklemekomut = new NpgsqlCommand("INSERT INTO ogrenci (ogrenci_id,ogrenci_isim,ogrenci_soyisim,ogrenci_parola,agno,talepsayisi) VALUES(" + ogrenci.ID + ",'" + ogrenci.isim + "','" + ogrenci.soyisim + "','" + ogrenci.sifre + "'," + ogrenci.AGNO + "," + ogrenci.talepsayisi + ");", Program.baglanti);
+            ogrencitabloeklemekomut.ExecuteNonQuery();
+
+
+            Console.WriteLine(ogrenci.ToString());
+            Console.WriteLine("Ilgi Alanlari:");
+            for(int i = 0; i < ogrenci.ilgialanlari.Count; i++)
+            {
+                for (int j = 0; j < Program.ilgialanlari.Count; j++)
+                {
+                    if (ogrenci.ilgialanlari[i].Equals(Program.ilgialanlari[j].ilgialaniadi))
+                    {
+                        NpgsqlCommand ilgialanlaribaglakomut = new NpgsqlCommand("INSERT INTO ogrenci_ilgialani (ogrenci_id,ilgialani_id) VALUES (" + ogrenci.ID + "," + Program.ilgialanlari[j].ID +");", Program.baglanti);
+                        Console.WriteLine(ogrenci.ilgialanlari[i]);
+                        ilgialanlaribaglakomut.ExecuteNonQuery();
+                        break;
+                    }
+                }
+            }
+            Console.WriteLine("Alinan Dersler:");
+            for (int i = 0; i < ogrenci.alinandersler.Count; i++)
+            {
+                NpgsqlCommand ogrencialinanderslerkomut = new NpgsqlCommand("INSERT INTO alinandersler (ogrenci_id,ders_id,sayisalnot,harfnot,dersiverenhoca_id) VALUES(" + ogrenci.ID + ",'" + ogrenci.alinandersler[i].dersID + "'," + ogrenci.alinandersler[i].sayisalnot + ",'" + ogrenci.alinandersler[i].harfnotu + "'," + ogrenci.alinandersler[i].dersiverenhocaID +");", Program.baglanti);
+                Console.WriteLine(ogrenci.alinandersler[i].ToString());
+                ogrencialinanderslerkomut.ExecuteNonQuery();
+            }
+
+            Program.ogrenciler.Add(ogrenci);
+            
         }
     }
 }
