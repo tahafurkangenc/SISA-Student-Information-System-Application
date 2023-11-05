@@ -102,7 +102,7 @@
             // ogrenciDersdataGridView
             // 
             this.ogrenciDersdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ogrenciDersdataGridView.Location = new System.Drawing.Point(279, 12);
+            this.ogrenciDersdataGridView.Location = new System.Drawing.Point(279, 14);
             this.ogrenciDersdataGridView.Name = "ogrenciDersdataGridView";
             this.ogrenciDersdataGridView.Size = new System.Drawing.Size(464, 346);
             this.ogrenciDersdataGridView.TabIndex = 6;

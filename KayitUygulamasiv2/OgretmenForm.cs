@@ -40,19 +40,26 @@ namespace KayitUygulamasiv2
 
         public double kritikDegerHesaplama(Ogretmen gelenogretmen,Ogrenci gelenogrenci) 
         {
-            /*double kritikdeger=0;
-            for(int i= 0;i<gelenogretmen.kritikdersler.Count;i++)
-            {
-                for(int j = 0; j < gelenogrenci.alinandersler.Count; j++)
-                {
-                    if (gelenogrenci.alinandersler[j].dersID.Equals(gelenogretmen.kritikdersler[j].dersID)) // dersler eşleşti  //2 hoca birlikte hata veriyor
-                    {
-                        kritikdeger = kritikdeger + gelenogrenci.alinandersler[j].sayisalnot;
-                        break;
-                    }
-                }
-            }
-            return kritikdeger/gelenogretmen.kritikdersler.Count;*/
+            /* double kritikdeger=0;
+             if (gelenogrenci.alinandersler.Count > 0 && gelenogretmen.kritikdersler.Count > 0)
+             {
+                 for (int i = 0; i < gelenogretmen.kritikdersler.Count; i++)
+                 {
+                     for (int j = 0; j < gelenogrenci.alinandersler.Count; j++)
+                     {
+                         if (gelenogrenci.alinandersler[j].dersID.Equals(gelenogretmen.kritikdersler[j].dersID)) // dersler eşleşti  //2 hoca birlikte hata veriyor
+                         {
+                             kritikdeger = kritikdeger + gelenogrenci.alinandersler[j].sayisalnot;
+                             break;
+                         }
+                     }
+                 }
+                 return kritikdeger / gelenogretmen.kritikdersler.Count;
+             }
+             else
+             {
+                 return 0;
+             }*/
             return 0;
         }
 

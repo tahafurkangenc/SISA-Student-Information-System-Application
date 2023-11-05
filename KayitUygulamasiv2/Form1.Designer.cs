@@ -51,42 +51,42 @@
             // 
             // OgrenciIDTextBox
             // 
-            this.OgrenciIDTextBox.Location = new System.Drawing.Point(201, 12);
+            this.OgrenciIDTextBox.Location = new System.Drawing.Point(129, 6);
             this.OgrenciIDTextBox.Name = "OgrenciIDTextBox";
             this.OgrenciIDTextBox.Size = new System.Drawing.Size(227, 20);
             this.OgrenciIDTextBox.TabIndex = 0;
             // 
             // AgnoTextBox
             // 
-            this.AgnoTextBox.Location = new System.Drawing.Point(201, 116);
+            this.AgnoTextBox.Location = new System.Drawing.Point(129, 110);
             this.AgnoTextBox.Name = "AgnoTextBox";
             this.AgnoTextBox.Size = new System.Drawing.Size(227, 20);
             this.AgnoTextBox.TabIndex = 1;
             // 
             // OgrencisoyisimTextBox
             // 
-            this.OgrencisoyisimTextBox.Location = new System.Drawing.Point(201, 64);
+            this.OgrencisoyisimTextBox.Location = new System.Drawing.Point(129, 58);
             this.OgrencisoyisimTextBox.Name = "OgrencisoyisimTextBox";
             this.OgrencisoyisimTextBox.Size = new System.Drawing.Size(227, 20);
             this.OgrencisoyisimTextBox.TabIndex = 2;
             // 
             // OgrenciisimTextBox
             // 
-            this.OgrenciisimTextBox.Location = new System.Drawing.Point(201, 38);
+            this.OgrenciisimTextBox.Location = new System.Drawing.Point(129, 32);
             this.OgrenciisimTextBox.Name = "OgrenciisimTextBox";
             this.OgrenciisimTextBox.Size = new System.Drawing.Size(227, 20);
             this.OgrenciisimTextBox.TabIndex = 3;
             // 
             // OgrencisifreTextBox
             // 
-            this.OgrencisifreTextBox.Location = new System.Drawing.Point(201, 90);
+            this.OgrencisifreTextBox.Location = new System.Drawing.Point(129, 84);
             this.OgrencisifreTextBox.Name = "OgrencisifreTextBox";
             this.OgrencisifreTextBox.Size = new System.Drawing.Size(227, 20);
             this.OgrencisifreTextBox.TabIndex = 4;
             // 
             // OCRverieklebutton
             // 
-            this.OCRverieklebutton.Location = new System.Drawing.Point(201, 442);
+            this.OCRverieklebutton.Location = new System.Drawing.Point(129, 436);
             this.OCRverieklebutton.Name = "OCRverieklebutton";
             this.OCRverieklebutton.Size = new System.Drawing.Size(227, 29);
             this.OCRverieklebutton.TabIndex = 8;
@@ -100,7 +100,7 @@
             // 
             // OCRveriislebutton
             // 
-            this.OCRveriislebutton.Location = new System.Drawing.Point(201, 477);
+            this.OCRveriislebutton.Location = new System.Drawing.Point(129, 471);
             this.OCRveriislebutton.Name = "OCRveriislebutton";
             this.OCRveriislebutton.Size = new System.Drawing.Size(227, 29);
             this.OCRveriislebutton.TabIndex = 9;
@@ -111,7 +111,7 @@
             // OgrenciIDLabel
             // 
             this.OgrenciIDLabel.AutoSize = true;
-            this.OgrenciIDLabel.Location = new System.Drawing.Point(134, 19);
+            this.OgrenciIDLabel.Location = new System.Drawing.Point(62, 13);
             this.OgrenciIDLabel.Name = "OgrenciIDLabel";
             this.OgrenciIDLabel.Size = new System.Drawing.Size(61, 13);
             this.OgrenciIDLabel.TabIndex = 10;
@@ -120,7 +120,7 @@
             // OgrenciSoyadLabel
             // 
             this.OgrenciSoyadLabel.AutoSize = true;
-            this.OgrenciSoyadLabel.Location = new System.Drawing.Point(110, 71);
+            this.OgrenciSoyadLabel.Location = new System.Drawing.Point(38, 65);
             this.OgrenciSoyadLabel.Name = "OgrenciSoyadLabel";
             this.OgrenciSoyadLabel.Size = new System.Drawing.Size(85, 13);
             this.OgrenciSoyadLabel.TabIndex = 11;
@@ -129,7 +129,7 @@
             // OgrenciİsimLabel
             // 
             this.OgrenciİsimLabel.AutoSize = true;
-            this.OgrenciİsimLabel.Location = new System.Drawing.Point(127, 45);
+            this.OgrenciİsimLabel.Location = new System.Drawing.Point(55, 39);
             this.OgrenciİsimLabel.Name = "OgrenciİsimLabel";
             this.OgrenciİsimLabel.Size = new System.Drawing.Size(68, 13);
             this.OgrenciİsimLabel.TabIndex = 12;
@@ -138,7 +138,7 @@
             // OgrenciAgnoLabel
             // 
             this.OgrenciAgnoLabel.AutoSize = true;
-            this.OgrenciAgnoLabel.Location = new System.Drawing.Point(154, 123);
+            this.OgrenciAgnoLabel.Location = new System.Drawing.Point(82, 117);
             this.OgrenciAgnoLabel.Name = "OgrenciAgnoLabel";
             this.OgrenciAgnoLabel.Size = new System.Drawing.Size(41, 13);
             this.OgrenciAgnoLabel.TabIndex = 13;
@@ -146,7 +146,7 @@
             // 
             // AlinanderskodlaririchTextBox
             // 
-            this.AlinanderskodlaririchTextBox.Location = new System.Drawing.Point(201, 142);
+            this.AlinanderskodlaririchTextBox.Location = new System.Drawing.Point(129, 136);
             this.AlinanderskodlaririchTextBox.Name = "AlinanderskodlaririchTextBox";
             this.AlinanderskodlaririchTextBox.Size = new System.Drawing.Size(227, 144);
             this.AlinanderskodlaririchTextBox.TabIndex = 14;
@@ -155,7 +155,7 @@
             // 
             // OCRverisilbutton
             // 
-            this.OCRverisilbutton.Location = new System.Drawing.Point(201, 512);
+            this.OCRverisilbutton.Location = new System.Drawing.Point(129, 506);
             this.OCRverisilbutton.Name = "OCRverisilbutton";
             this.OCRverisilbutton.Size = new System.Drawing.Size(227, 29);
             this.OCRverisilbutton.TabIndex = 15;
@@ -165,7 +165,7 @@
             // 
             // OgrenciEkleButton
             // 
-            this.OgrenciEkleButton.Location = new System.Drawing.Point(201, 547);
+            this.OgrenciEkleButton.Location = new System.Drawing.Point(129, 541);
             this.OgrenciEkleButton.Name = "OgrenciEkleButton";
             this.OgrenciEkleButton.Size = new System.Drawing.Size(227, 29);
             this.OgrenciEkleButton.TabIndex = 16;
@@ -176,7 +176,7 @@
             // OgrenciSifreLabel
             // 
             this.OgrenciSifreLabel.AutoSize = true;
-            this.OgrenciSifreLabel.Location = new System.Drawing.Point(121, 97);
+            this.OgrenciSifreLabel.Location = new System.Drawing.Point(49, 91);
             this.OgrenciSifreLabel.Name = "OgrenciSifreLabel";
             this.OgrenciSifreLabel.Size = new System.Drawing.Size(74, 13);
             this.OgrenciSifreLabel.TabIndex = 17;
@@ -185,7 +185,7 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(201, 292);
+            this.richTextBox1.Location = new System.Drawing.Point(129, 286);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(227, 144);
             this.richTextBox1.TabIndex = 18;
@@ -194,7 +194,7 @@
             // OgrenciAldigiDerslerLabel
             // 
             this.OgrenciAldigiDerslerLabel.AutoSize = true;
-            this.OgrenciAldigiDerslerLabel.Location = new System.Drawing.Point(80, 145);
+            this.OgrenciAldigiDerslerLabel.Location = new System.Drawing.Point(8, 139);
             this.OgrenciAldigiDerslerLabel.Name = "OgrenciAldigiDerslerLabel";
             this.OgrenciAldigiDerslerLabel.Size = new System.Drawing.Size(115, 13);
             this.OgrenciAldigiDerslerLabel.TabIndex = 19;
@@ -203,7 +203,7 @@
             // OgrenciilgiAlanlariLabel
             // 
             this.OgrenciilgiAlanlariLabel.AutoSize = true;
-            this.OgrenciilgiAlanlariLabel.Location = new System.Drawing.Point(95, 295);
+            this.OgrenciilgiAlanlariLabel.Location = new System.Drawing.Point(23, 289);
             this.OgrenciilgiAlanlariLabel.Name = "OgrenciilgiAlanlariLabel";
             this.OgrenciilgiAlanlariLabel.Size = new System.Drawing.Size(100, 13);
             this.OgrenciilgiAlanlariLabel.TabIndex = 20;
@@ -213,7 +213,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(452, 584);
+            this.ClientSize = new System.Drawing.Size(372, 584);
             this.Controls.Add(this.OgrenciilgiAlanlariLabel);
             this.Controls.Add(this.OgrenciAldigiDerslerLabel);
             this.Controls.Add(this.richTextBox1);

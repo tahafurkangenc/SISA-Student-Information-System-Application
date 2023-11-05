@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -122,7 +123,7 @@ namespace KayitUygulamasiv2
             ogrenci.soyisim = OgrencisoyisimTextBox.Text;
             ogrenci.ID = int.Parse(OgrenciIDTextBox.Text);
             ogrenci.sifre = OgrencisifreTextBox.Text;
-            ogrenci.AGNO = double.Parse(AgnoTextBox.Text);
+            ogrenci.AGNO = double.Parse(AgnoTextBox.Text)/100.0;
             ogrenci.talepsayisi = 0;
             String[] derslerinisimleri_ID = AlinanderskodlaririchTextBox.Text.Split('\n');
             for(int i = 0;i < derslerinisimleri_ID.Length; i++)
@@ -201,7 +202,8 @@ namespace KayitUygulamasiv2
                 }
             }
 
-            NpgsqlCommand ogrencitabloeklemekomut = new NpgsqlCommand("INSERT INTO ogrenci (ogrenci_id,ogrenci_isim,ogrenci_soyisim,ogrenci_parola,agno,talepsayisi) VALUES(" + ogrenci.ID + ",'" + ogrenci.isim + "','" + ogrenci.soyisim + "','" + ogrenci.sifre + "'," + ogrenci.AGNO + "," + ogrenci.talepsayisi + ");", Program.baglanti);
+            Console.WriteLine("AGNO DENEMESİ :" + ogrenci.AGNO);
+            NpgsqlCommand ogrencitabloeklemekomut = new NpgsqlCommand("INSERT INTO ogrenci (ogrenci_id,ogrenci_isim,ogrenci_soyisim,ogrenci_parola,agno,talepsayisi) VALUES(" + ogrenci.ID + ",'" + ogrenci.isim + "','" + ogrenci.soyisim + "','" + ogrenci.sifre + "'," + ogrenci.AGNO.ToString().Replace(',','.') + "," + ogrenci.talepsayisi + ");", Program.baglanti);
             ogrencitabloeklemekomut.ExecuteNonQuery();
 
 
