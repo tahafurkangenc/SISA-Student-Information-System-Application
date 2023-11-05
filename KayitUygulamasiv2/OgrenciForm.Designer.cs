@@ -166,7 +166,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1347, 627);
+            this.ClientSize = new System.Drawing.Size(1347, 402);
             this.Controls.Add(this.talepgonderButton);
             this.Controls.Add(this.talepgondertabloyenilebutton);
             this.Controls.Add(this.dersadifltreButton);
