@@ -34,7 +34,6 @@
             this.ogrencikayitbutton = new System.Windows.Forms.Button();
             this.ilgialaniekleTextBox = new System.Windows.Forms.TextBox();
             this.ilgialanieklebutton = new System.Windows.Forms.Button();
-            this.ilgialanisil = new System.Windows.Forms.Button();
             this.ilgiAlanlariListBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.rastgeleogrencisayisiTextBox = new System.Windows.Forms.TextBox();
@@ -113,15 +112,6 @@
             this.ilgialanieklebutton.Text = "İlgi Alanı Ekle";
             this.ilgialanieklebutton.UseVisualStyleBackColor = true;
             this.ilgialanieklebutton.Click += new System.EventHandler(this.ilgialanieklebutton_Click);
-            // 
-            // ilgialanisil
-            // 
-            this.ilgialanisil.Location = new System.Drawing.Point(12, 344);
-            this.ilgialanisil.Name = "ilgialanisil";
-            this.ilgialanisil.Size = new System.Drawing.Size(122, 26);
-            this.ilgialanisil.TabIndex = 20;
-            this.ilgialanisil.Text = "İlgi Alanı Sil";
-            this.ilgialanisil.UseVisualStyleBackColor = true;
             // 
             // ilgiAlanlariListBox
             // 
@@ -348,7 +338,6 @@
             this.Controls.Add(this.rastgeleogrencisayisiTextBox);
             this.Controls.Add(this.ilgialaniekleTextBox);
             this.Controls.Add(this.ilgialanieklebutton);
-            this.Controls.Add(this.ilgialanisil);
             this.Controls.Add(this.ilgiAlanlariListBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ogrencikayitbutton);
@@ -371,7 +360,6 @@
         private System.Windows.Forms.Button ogrencikayitbutton;
         private System.Windows.Forms.TextBox ilgialaniekleTextBox;
         private System.Windows.Forms.Button ilgialanieklebutton;
-        private System.Windows.Forms.Button ilgialanisil;
         private System.Windows.Forms.ListBox ilgiAlanlariListBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox rastgeleogrencisayisiTextBox;

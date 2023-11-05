@@ -322,7 +322,7 @@ namespace KayitUygulamasiv2
                     {
                         for(int j = 0; j < dersler.Count; j++)
                         {
-                            if (dersler[j].dersID.Equals((String)row["ders_id"])) // dersi bulduk
+                            if (dersler[j].dersID.Equals((String)row["ders_id"]) && dersler[j].dersiverenhocaID== (int)row["ogretmen_id"]) // dersi bulduk //değigstiii
                             {
                                 ogretmenler[i].kritikdersler.Add(dersler[j]);
                                 break;

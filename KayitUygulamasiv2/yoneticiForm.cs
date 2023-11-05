@@ -158,7 +158,7 @@ namespace KayitUygulamasiv2
                         Console.WriteLine("VERİLECEK ID=" + verilecek_ID + "    İLGİ ALANİ = " + ilgialaniekleTextBox.Text);
                         ilgiAlanlariListBox.Items.Add(ilgialaniekleTextBox.Text);
 
-                        Program.baglanti.Open();
+                        //Program.baglanti.Open();
                         //NpgsqlCommand ilgialaniekle = new NpgsqlCommand("INSERT INTO ilgialani_isimler (ilgialani_id, ilgialani_isimler) VALUES ("+verilecek_ID+", '"+ilgialaniekleTextBox.Text+"') ;" , Program.baglanti);
                         NpgsqlCommand ilgialanieklemekomutu = new NpgsqlCommand("INSERT INTO ilgialani_isimler (ilgialani_id, ilgialani_isimler) VALUES (" + verilecek_ID + ", '" + ilgialaniekleTextBox.Text + "') ;", Program.baglanti);
                         ilgialanieklemekomutu.ExecuteNonQuery();

@@ -298,18 +298,22 @@ namespace KayitUygulamasiv2
                 {
                     if (Program.ogrenciler[i].alinandersler[j].dersID.Equals(dersfiltresiTextBox.Text) || Program.ogrenciler[i].alinandersler[j].dersadi.Equals(dersfiltresiTextBox.Text))
                     {
-                        //dersialmismi = true;
-                        DataGridViewRow dataGridViewRow = new DataGridViewRow();
-                        dataGridViewRow.CreateCells(dersiAlanOgrencilerdataGridView);
-                        dataGridViewRow.Cells[0].Value = Program.ogrenciler[i].isim;
-                        dataGridViewRow.Cells[1].Value = Program.ogrenciler[i].soyisim;
-                        dataGridViewRow.Cells[2].Value = Program.ogrenciler[i].ID;
-                        dataGridViewRow.Cells[3].Value = Program.ogrenciler[i].AGNO;
-                        dataGridViewRow.Cells[4].Value = Program.ogrenciler[i].talepsayisi;
-                        dataGridViewRow.Cells[5].Value = Program.ogrenciler[i].alinandersler[j].sayisalnot;
-                        dataGridViewRow.Cells[6].Value = Program.ogrenciler[i].alinandersler[j].harfnotu;
-                        dersiAlanOgrencilerdataGridView.Rows.Add(dataGridViewRow);
-                        break;
+                        if (Program.ogrenciler[i].alinandersler[j].dersiverenhocaID == ogretmen.ID)
+                        {
+                            //dersialmismi = true;
+                            DataGridViewRow dataGridViewRow = new DataGridViewRow();
+                            dataGridViewRow.CreateCells(dersiAlanOgrencilerdataGridView);
+                            dataGridViewRow.Cells[0].Value = Program.ogrenciler[i].isim;
+                            dataGridViewRow.Cells[1].Value = Program.ogrenciler[i].soyisim;
+                            dataGridViewRow.Cells[2].Value = Program.ogrenciler[i].ID;
+                            dataGridViewRow.Cells[3].Value = Program.ogrenciler[i].AGNO;
+                            dataGridViewRow.Cells[4].Value = Program.ogrenciler[i].talepsayisi;
+                            dataGridViewRow.Cells[5].Value = Program.ogrenciler[i].alinandersler[j].sayisalnot;
+                            dataGridViewRow.Cells[6].Value = Program.ogrenciler[i].alinandersler[j].harfnotu;
+                            dersiAlanOgrencilerdataGridView.Rows.Add(dataGridViewRow);
+                            break;
+                        }
+                        
                     }
                     //  if (ogretmen.ilgialanlari.Contains(Program.ogrenciler[i].ilgialanlari[j])){ //ilgi alanları eşleşti
                 }
